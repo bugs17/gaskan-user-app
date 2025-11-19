@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
         fontFamily:Fonts.bold
     },
     ctaButton: {
-        backgroundColor: "#8E8E93",
+        backgroundColor: "#532dffff",
+        // backgroundColor: "#8E8E93",
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.20)", // Apple-style border di dark surface
         paddingHorizontal: 18,

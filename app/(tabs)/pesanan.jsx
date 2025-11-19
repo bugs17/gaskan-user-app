@@ -3,9 +3,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../../components/pesanan/Header';
 import CardOrder from '../../components/pesanan/Card-order';
 import CourierCard from '../../components/pesanan/Card-kurir';
+import EmptyStateView from '../../components/pesanan/No-order';
 
 
 export default function Pesanan() {
+  const order = false
+
+  if (!order) {
+    return <EmptyStateView />;
+  }
+  
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <Header />
