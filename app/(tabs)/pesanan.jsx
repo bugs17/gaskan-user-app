@@ -7,7 +7,7 @@ import EmptyStateView from '../../components/pesanan/No-order';
 
 
 export default function Pesanan() {
-  const order = false
+  const order = true
 
   if (!order) {
     return <EmptyStateView />;

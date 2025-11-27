@@ -6,6 +6,8 @@ import {Fonts} from '../constants/Fonts'
 
 
 export default function GradientCard({ children, style }) {
+  
+
   return (
     <View
       style={[styles.card, style]}
@@ -15,7 +17,7 @@ export default function GradientCard({ children, style }) {
           Jelajahi pilihan makanan di sekitarmu.
         </Text>
 
-        <TouchableOpacity activeOpacity={.8} style={styles.ctaButton}>
+        <TouchableOpacity  activeOpacity={.8} style={styles.ctaButton}>
             <Text style={styles.ctaText}>Cek sekarang</Text>
         </TouchableOpacity>
 
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
         fontFamily:Fonts.bold
     },
     ctaButton: {
-        backgroundColor: "#532dffff",
+        backgroundColor: "#4B6BFF",
         // backgroundColor: "#8E8E93",
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.20)", // Apple-style border di dark surface

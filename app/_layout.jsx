@@ -52,11 +52,13 @@ function RootLayoutNav() {
 
   return (
     <>
-      <StatusBar style='dark' />
+        <StatusBar style='dark' />
 
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="menu" options={{ headerShown: false }} />
+        </Stack>
+
     </>
   );
 }

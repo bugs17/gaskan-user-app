@@ -6,17 +6,19 @@ import InfoCard from '../../components/CardPromo-home';
 import QuickMenu from '../../components/Quick-menu';
 import PrommoSection from '../../components/Promo-section';
 import FloatingCartButton from '../../components/Floating-cart-button';
+import { useRouter } from 'expo-router';
 
 
 
 export default function TabOneScreen() {
   const cartCount = 0;
+  const router = useRouter()
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <HeaderHome />
-      <ScrollView style={{flex:1}}>
-          <SearchPressable  />
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
+          <SearchPressable onPress={() => router.push("/menu")} />
           <View style={styles.separator} />
           <InfoCard />
           <View style={styles.separator} />
