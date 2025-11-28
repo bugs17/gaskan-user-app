@@ -5,7 +5,7 @@ import MenuCard from '../../components/search-screen/Menu-card';
 import SearchHeader from '../../components/search-screen/Search-header';
 import CategoriesButton from '../../components/search-screen/Categories-button';
 import PulseWaves from '../../components/Loading';
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -6,15 +6,16 @@ import {
   ScrollView,
   Pressable,
   StyleSheet,
-  TouchableOpacity,
 } from "react-native";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
 import { FlashList } from "@shopify/flash-list";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import {  useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ShoppingBagIcon, ShoppingCartIcon } from "react-native-heroicons/outline";
+import { ArrowRightIcon, ShoppingBagIcon, ShoppingCartIcon } from "react-native-heroicons/outline";
 import CartBottomSheet from "../../components/CartBottomSheet";
-
+import AppleButton from "../../components/Button-apple-custom";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import {Fonts} from '../../constants/Fonts'
 // Dummy related menu items
 const relatedMenus = [
   {
@@ -41,8 +42,23 @@ export default function DetailMenuScreen() {
   const params = useLocalSearchParams();
   const router = useRouter();
   const bottomSheetRef = useRef(null);
+  
+  // reanimated
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+  }));
+
+
 
   const item = JSON.parse(params.item);
+
+  useEffect(() => {
+    bottomSheetRef.current?.close()
+  }, [])
+
+
 
 
   const renderRelated = useCallback(({ item }) => (
@@ -55,7 +71,11 @@ export default function DetailMenuScreen() {
     </Pressable>
   ), []);
 
+
+
+
   return (
+
     <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#F5F6F7" }}>
       <View style={styles.container}>
 
@@ -68,6 +88,7 @@ export default function DetailMenuScreen() {
             {item.name}
           </Text>
         </View>
+        
 
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -87,7 +108,7 @@ export default function DetailMenuScreen() {
 
             <View style={styles.row}>
               <Text style={styles.label}>Harga</Text>
-              <Text style={styles.value}>Rp {item.price}</Text>
+              <Text style={styles.price}>Rp {item.price}</Text>
             </View>
 
             <View style={styles.divider} />
@@ -106,9 +127,22 @@ export default function DetailMenuScreen() {
             </Text>
           </View>
 
+          
+
           {/* WARUNG CARD */}
-          <Pressable style={styles.card} onPress={() => {}}>
-            <Text style={styles.cardTitle}>Warung</Text>
+          <View style={styles.card}>
+            <View style={styles.row}>
+              <Text style={styles.cardTitle}>Warung</Text>
+                <Pressable
+                  onPressIn={() => (scale.value = withTiming(0.7, { duration: 80 }))}
+                  onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
+                  onPress={() => router.push('/warung')}
+                >
+                  <Animated.View style={animatedStyle}>
+                    <ArrowRightIcon size={20} color="#8E8E93" />
+                  </Animated.View>
+                </Pressable>
+            </View>
 
             <View style={styles.row}>
               <Text style={styles.label}>Nama Warung</Text>
@@ -121,7 +155,11 @@ export default function DetailMenuScreen() {
               <Text style={styles.label}>Jarak</Text>
               <Text style={styles.value}>1.2 km</Text>
             </View>
-          </Pressable>
+          </View>
+
+          <View style={{marginHorizontal: 16, marginBottom: 18,}}>
+            <AppleButton leftIcon={<ShoppingBagIcon color="#fff" size={20} />} title={"Tambah"} onPress={() => bottomSheetRef.current?.present()} />
+          </View>
 
           
 
@@ -142,14 +180,10 @@ export default function DetailMenuScreen() {
           <View style={{ height: 120 }} />
 
         </ScrollView>
-
-        {/* FLOATING ADD TO CART BUTTON */}
-        <TouchableOpacity activeOpacity={.8} style={styles.fab} onPress={() => bottomSheetRef.current?.expand()}>
-            <ShoppingBagIcon color={'#fff'} />
-          <Text style={styles.fabText}>Tamabh</Text>
-        </TouchableOpacity>
+        
+        <CartBottomSheet ref={bottomSheetRef} />
+        
       </View>
-        {/* <CartBottomSheet bottomSheetRef={bottomSheetRef} /> */}
     </SafeAreaView>
   );
 }
@@ -199,9 +233,9 @@ const styles = StyleSheet.create({
 
   cardTitle: {
     fontSize: 17,
-    fontWeight: "600",
     marginBottom: 12,
     color: "#000",
+    fontFamily:Fonts.bold
   },
 
   row: {
@@ -213,11 +247,17 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     color: "#555",
+    fontFamily:Fonts.regular
+  },
+  price:{
+    fontSize: 15,
+    color: "#34C759",
+    fontFamily:Fonts.semibold
   },
 
   value: {
     fontSize: 15,
-    fontWeight: "500",
+    fontFamily:Fonts.semibold,
     color: "#000",
   },
 
@@ -235,7 +275,7 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
+    fontFamily:Fonts.bold,
     marginLeft: 16,
     marginBottom: 12,
     color: "#000",
@@ -266,7 +306,6 @@ const styles = StyleSheet.create({
   fab: {
     position: "absolute",
     right: 16,
-    bottom: 30,
     backgroundColor: "#007AFF",
     paddingVertical: 14,
     paddingHorizontal: 26,

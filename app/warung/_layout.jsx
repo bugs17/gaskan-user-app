@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router'
 import { Platform } from 'react-native'
 
-const MenuLayout = () => {
+const WarungLayout = () => {
   const isIos = Platform.OS === 'ios'
 
   return (
@@ -10,13 +10,9 @@ const MenuLayout = () => {
             headerShown:false,
             animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
         }} />
-        <Stack.Screen name='[id]' options={{
-            headerShown:false,
-            animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
-        }} />
         
     </Stack>
   )
 }
 
-export default MenuLayout
+export default WarungLayout

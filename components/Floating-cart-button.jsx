@@ -42,11 +42,7 @@ const styles = StyleSheet.create({
     gap: 16,
 
     // Shadow Apple Style
-    shadowColor: "#000",
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 5,
+    boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.28)",
   },
 
   iconWrapper: {
