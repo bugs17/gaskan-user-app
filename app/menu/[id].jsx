@@ -12,7 +12,7 @@ import { FlashList } from "@shopify/flash-list";
 import {  useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowRightIcon, ShoppingBagIcon, ShoppingCartIcon } from "react-native-heroicons/outline";
-import CartBottomSheet from "../../components/CartBottomSheet";
+import CartBottomSheet from "../../components/bottom-sheet/CartBottomSheet";
 import AppleButton from "../../components/Button-apple-custom";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import {Fonts} from '../../constants/Fonts'
@@ -115,7 +115,7 @@ export default function DetailMenuScreen() {
 
             <View style={styles.row}>
               <Text style={styles.label}>Kategori</Text>
-              <Text style={styles.value}>Makanan</Text>
+              <Text style={styles.value}>🍛 Makanan</Text>
             </View>
           </View>
 
@@ -158,7 +158,11 @@ export default function DetailMenuScreen() {
           </View>
 
           <View style={{marginHorizontal: 16, marginBottom: 18,}}>
-            <AppleButton leftIcon={<ShoppingBagIcon color="#fff" size={20} />} title={"Tambah"} onPress={() => bottomSheetRef.current?.present()} />
+            <AppleButton 
+              leftIcon={<ShoppingBagIcon color="#fff" size={20} />} 
+              title={"Tambah"} onPress={() => bottomSheetRef.current?.present()} 
+              style={{boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)"}}
+              />
           </View>
 
           
@@ -182,7 +186,6 @@ export default function DetailMenuScreen() {
         </ScrollView>
         
         <CartBottomSheet ref={bottomSheetRef} />
-        
       </View>
     </SafeAreaView>
   );

@@ -4,6 +4,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { Fonts } from "../constants/Fonts";
 
 export default function AppleButton({
   title,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     justifyContent: "center",
     
-    boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)",
+    // boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)",
   },
 
   contentWrapper: {
@@ -76,6 +77,6 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     fontSize: 17,
-    fontWeight: "600",
+    fontWeight: Fonts.bold,
   },
 });

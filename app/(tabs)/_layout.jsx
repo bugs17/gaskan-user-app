@@ -33,7 +33,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => {
             // Gunakan solid jika aktif, outline jika tidak aktif
             return focused ? (
-              <HomeSolid size={32} color="#4B6BFF" />
+              <HomeSolid size={32} color="#8A63F6" />
             ) : (
               <HomeOutline size={32} color="#000" />
             );
@@ -47,7 +47,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => {
             // Gunakan solid jika aktif, outline jika tidak aktif
             return focused ? (
-              <ReceiptPercentIconSolid size={32} color="#4B6BFF" />
+              <ReceiptPercentIconSolid size={32} color="#8A63F6" />
             ) : (
               <ReceiptPercentIconOutline size={32} color="#000" />
             );
@@ -62,7 +62,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => {
             // Gunakan solid jika aktif, outline jika tidak aktif
             return focused ? (
-              <UserSolid size={32} color="#4B6BFF" />
+              <UserSolid size={32} color="#8A63F6" />
             ) : (
               <UserOutline size={32} color="#000" />
             );
