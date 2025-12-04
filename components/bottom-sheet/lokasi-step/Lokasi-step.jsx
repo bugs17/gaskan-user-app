@@ -10,11 +10,10 @@ const LokasiStep = ({keystep, onNext, onPrev}) => {
     <BottomSheetView style={[styles.container, {marginTop:50}]}>
         <MotiView
             key={keystep}
-            from={{ opacity: 0, translateY: 20 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            exit={{ opacity: 0, translateY: -10 }}
-            transition={{ type: "timing", duration: 220 }}
-            style={{ flex: 1 }}
+                from={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: -20 }}
+                transition={{ type: "timing", duration: 220 }}
         >
         <View style={{ flex: 1, gap: 20 }}>
             <View style={styles.mapCard}>
@@ -26,7 +25,11 @@ const LokasiStep = ({keystep, onNext, onPrev}) => {
             <View style={styles.footer}>
                 <AppleButton 
                     title="Lanjut" onPress={onNext}
-                    style={{boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)"}}
+                    style={{
+                      boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)",
+                      borderWidth: 1,
+                      borderColor: "rgba(255,255,255,0.18)",
+                  }}
                 />
 
                 <AppleButton

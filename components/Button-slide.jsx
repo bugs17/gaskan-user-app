@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from "react-nat
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, interpolate, Extrapolate, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { ArrowRightIcon } from "react-native-heroicons/solid";
+import { Fonts } from "../constants/Fonts";
 
 const { width } = Dimensions.get("window");
 const SLIDER_WIDTH = width - 40;
@@ -16,7 +17,7 @@ export default function SlideToConfirm({ onConfirm, label }) {
     setLoading(true);
     onConfirm?.();
     setTimeout(() => setLoading(false), 1500);
-    translateX.value = withSpring(0);
+    translateX.value = withSpring(0); //ini untuk mengembalikan tubs ke posisi awal
   };
 
   const panGesture = Gesture.Pan()
@@ -71,36 +72,36 @@ const styles = StyleSheet.create({
     width: SLIDER_WIDTH,
     height: THUMB_SIZE,
     borderRadius: THUMB_SIZE / 2,
-    backgroundColor: "#E5E5EA",
+    backgroundColor: "rgba(138, 99, 246, 0.2)", // soft ungu background
     justifyContent: "center",
     paddingHorizontal: 5,
     alignSelf: "center",
     marginVertical: 20,
-    overflow:'hidden'
+    overflow: "hidden",
   },
   track: {
     position: "absolute",
     left: 0,
     top: 0,
     bottom: 0,
-    borderRadius: THUMB_SIZE / 2,
-    backgroundColor: "#007AFF",
+    // borderRadius: THUMB_SIZE / 2,
+    backgroundColor: "#8A63F6", // progress track purple electric
   },
   label: {
     position: "absolute",
     alignSelf: "center",
     fontSize: 16,
-    fontWeight: "600",
-    color: "#000",
+    color: "#fff", // putih agar kontras
+    fontFamily:Fonts.bold
   },
   thumb: {
     position: "absolute",
     width: THUMB_SIZE,
     height: THUMB_SIZE,
-    borderTopRightRadius: THUMB_SIZE / 2,
-    borderBottomRightRadius: THUMB_SIZE / 2,
-    backgroundColor: "#007AFF",
+    borderRadius: THUMB_SIZE / 2,
+    backgroundColor: "#B388FF", // thumb ungu solid
     justifyContent: "center",
     alignItems: "center",
+    boxShadow: "0px 4px 10px rgba(138, 99, 246, 0.3)",
   },
 });

@@ -1,9 +1,9 @@
 import {  Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Fonts } from "../constants/Fonts";
 
-export default function CategoryCard({ label, icon }) {
+export default function CategoryCard({ label, icon, onPress }) {
   return (
-    <TouchableOpacity activeOpacity={.8} style={styles.card}>
+    <TouchableOpacity onPress={onPress} activeOpacity={.8} style={styles.card}>
       <Text style={styles.icon}>{icon}</Text>
       <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>

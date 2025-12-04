@@ -6,6 +6,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Fonts } from "../constants/Fonts";
 
+
 export default function AppleButton({
   title,
   onPress,
@@ -36,6 +37,7 @@ export default function AppleButton({
           style
         ]}
       >
+
         <View style={styles.contentWrapper}>
           {leftIcon ? <View style={styles.iconLeft}>{leftIcon}</View> : null}
 

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Animated, { useAnimatedStyle, withSpring, withTiming } from "react-native-reanimated";
+import { Fonts } from '../constants/Fonts';
 
 
 
@@ -17,7 +18,7 @@ const AnimatedCategoryButton = ({ label, isActive, onPress }) => {
   }));
 
   const animatedStyle = useAnimatedStyle(() => ({
-    backgroundColor: withTiming(isActive ? "#8A63F6" : "#F2F2F7", { duration: 180 }),
+    backgroundColor: withTiming(isActive ? "#8A63F6" : "#fff", { duration: 180 }),
     boxShadow: isActive
       ? "0px 4px 12px rgba(60, 35, 130, 0.25)"
       : "0px 4px 10px rgba(0,0,0,0.10)",
@@ -27,25 +28,13 @@ const AnimatedCategoryButton = ({ label, isActive, onPress }) => {
     color: withTiming(isActive ? "#fff" : "#6C6C70", { duration: 160 }),
   }));
 
-  const iconStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(isActive ? 1 : 0.8, { duration: 160 }),
-  }));
 
   return (
     <Animated.View style={[scale]}>
       <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
         <Animated.View style={[styles.categoryButton, animatedStyle]}>
           
-          {/* ICON */}
-          <Animated.Text style={[styles.icon, iconStyle]}>
-            {label === "Makanan" && "🍛"}
-            {label === "Minuman" && "🥤"}
-            {label === "Cemilan" && "🍪"}
-            {label === "By Warung" && "🏬"}
-          </Animated.Text>
-
-          {/* TEXT */}
-          <Animated.Text style={[styles.categoryText, textStyle]}>
+          <Animated.Text style={[styles.categoryText, textStyle, isActive && {fontFamily:Fonts.semibold}]}>
             {label}
           </Animated.Text>
         </Animated.View>
@@ -55,15 +44,10 @@ const AnimatedCategoryButton = ({ label, isActive, onPress }) => {
 };
 
 // manual category
-const categories = ['Makanan', 'Minuman','Cemilan', 'By Warung'];
 
 
-const CategoriesButton = ({pilih}) => {
-    const [selectedCategory, setSelectedCategory] = useState(pilih);
-
-    // useEffect(() => {
-    //   setSelectedCategory(pilih)
-    // },[])
+const CategoriesButtonWarungScreen = ({categories, onPress}) => {
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
     
     return (
         <View style={[styles.categories]}>
@@ -72,22 +56,25 @@ const CategoriesButton = ({pilih}) => {
                 key={cat}
                 label={cat}
                 isActive={selectedCategory === cat}
-                onPress={() => setSelectedCategory(cat)}
+                onPress={() => {
+                  setSelectedCategory(cat)
+                  onPress(cat)
+                }}
                 />
             ))}
         </View>
     )
 }
 
-export default CategoriesButton
+export default CategoriesButtonWarungScreen
 
 const styles = StyleSheet.create({
     categories: {
     flexDirection: 'row',
-    marginBottom: 16,
+    alignItems:'center',
     gap: 5,
-    paddingHorizontal:16,
     width: '100%',
+    
   },
 
   categoryButton: {
@@ -105,6 +92,6 @@ const styles = StyleSheet.create({
 
   categoryText: {
     fontSize: 14,
-    fontWeight: "500",
+    fontFamily:Fonts.regular
   },
 })

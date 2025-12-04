@@ -1,11 +1,12 @@
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {Fonts} from '../../constants/Fonts'
 
 const Index = () => {
   const router = useRouter();
+  const inset= useSafeAreaInsets()
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}>
@@ -30,7 +31,7 @@ const Index = () => {
 
         {/* CONTENT */}
         <ScrollView 
-          contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+          contentContainerStyle={{ padding: 16, paddingBottom: inset.bottom + 80 }}
           showsVerticalScrollIndicator={false}
         >
 

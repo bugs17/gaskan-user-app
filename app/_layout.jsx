@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import PlaceOrderOverlay from '../components/Place-order-loading-screen';
 
 
 export {
@@ -66,7 +67,9 @@ function RootLayoutNav() {
             <Stack.Screen name="menu" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
             <Stack.Screen name="warung" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
           </Stack>
+          <PlaceOrderOverlay />
       </BottomSheetModalProvider>
+
     </GestureHandlerRootView>
 
   );

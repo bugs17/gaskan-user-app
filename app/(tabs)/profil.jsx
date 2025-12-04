@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { UserIcon, MapPinIcon,ChatBubbleLeftRightIcon,ClockIcon,ShieldCheckIcon, CreditCardIcon, GiftIcon, BellIcon, QuestionMarkCircleIcon, ArrowRightIcon, ArrowLeftOnRectangleIcon, DocumentTextIcon, PhoneIcon } from "react-native-heroicons/outline";
 import ProfileImage from '../../assets/images/kurir-placeholder.png'
+import FancyFloatingCart from "../../components/Floating-chart-button";
 
 export default function ProfileScreen() {
+  const inset = useSafeAreaInsets()
   return (
     <SafeAreaView style={{flex:1}} edges={['top']}>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom:inset.bottom + 100}} showsVerticalScrollIndicator={false}>
 
         {/* HEADER USER */}
         <View style={styles.headerCard}>
@@ -49,6 +51,8 @@ export default function ProfileScreen() {
           />
         </View>
       </ScrollView>
+      <FancyFloatingCart />
+
     </SafeAreaView>
   );
 }

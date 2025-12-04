@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     height: 44,
     paddingHorizontal: 22,
     borderRadius: 12,
-    backgroundColor: '#532dffff',
+    backgroundColor: '#8A63F6',
     justifyContent: 'center',
     alignItems: 'center',
     boxShadow: "0px 2px 4px rgba(0,0,0,0.1)", // cross-platform lebih clean

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { TextInput, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { MotiText, AnimatePresence, MotiView } from "moti";
 import { BottomSheetTextInput, BottomSheetView } from "@gorhom/bottom-sheet";
 import AppleButton from "../../Button-apple-custom";
 import { ArrowLeftIcon } from "react-native-heroicons/outline";
+import { Fonts } from "../../../constants/Fonts";
 
 const placeholderList = [
   "Tolong sambalnya dipisah ya 🥵",
@@ -15,6 +16,7 @@ const placeholderList = [
 export default function Noted({ value, onChangeText, style, keystep, onNext, onPrev }) {
   const [index, setIndex] = useState(0);
   const [focused, setFocused] = useState(false);
+  
 
   const isEmpty = !value || value.length === 0;
   const shouldShowPlaceholder = isEmpty && !focused;
@@ -36,7 +38,7 @@ export default function Noted({ value, onChangeText, style, keystep, onNext, onP
         key={keystep}
         from={{ opacity: 0, translateY: 20 }}
         animate={{ opacity: 1, translateY: 0 }}
-        exit={{ opacity: 0, translateY: -10 }}
+        exit={{ opacity: 0, translateY: -20 }}
         transition={{ type: "timing", duration: 220 }}
       >
         <View style={[styles.wrapper, style]}>
@@ -60,7 +62,7 @@ export default function Noted({ value, onChangeText, style, keystep, onNext, onP
           <BottomSheetTextInput
             multiline
             value={value}
-            onChangeText={onChangeText}
+            onChangeText={(value) => console.log(value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             style={styles.textInput}
@@ -69,7 +71,11 @@ export default function Noted({ value, onChangeText, style, keystep, onNext, onP
         <View style={styles.footer}>
             <AppleButton 
                 title="Lanjut" onPress={onNext}
-                style={{boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)"}}
+                style={{
+                      boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)",
+                      borderWidth: 1,
+                      borderColor: "rgba(255,255,255,0.18)",
+                  }}
             />
 
             <AppleButton
@@ -119,6 +125,7 @@ const styles = StyleSheet.create({
     left: 14,
     fontSize: 16,
     color: "rgba(0,0,0,0.4)",
+    fontFamily:Fonts.medium
   },
   footer: { 
         marginTop: 20,

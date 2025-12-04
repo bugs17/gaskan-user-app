@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import HeaderHome from '../../components/Header-home';
 import SearchPressable from '../../components/Search-home';
@@ -6,19 +6,26 @@ import InfoCard from '../../components/CardPromo-home';
 import QuickMenu from '../../components/Quick-menu';
 import PrommoSection from '../../components/Promo-section';
 import FloatingCartButton from '../../components/Floating-cart-button';
-import { useRouter } from 'expo-router';
+import FancyFloatingCart from '../../components/Floating-chart-button';
+import {useSafePush} from '../../utils/useSafePush'
+import CartBottomSheet from '../../components/bottom-sheet/CartBottomSheet';
+import { useEffect, useRef } from 'react';
 
 
 
 export default function TabOneScreen() {
-  const cartCount = 0;
-  const router = useRouter()
+  const push = useSafePush()
+  const bottomSheetRef = useRef(null);
+
+  useEffect(() => {
+      bottomSheetRef.current?.close()
+    }, [])
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <HeaderHome />
       <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
-          <SearchPressable onPress={() => router.push("/menu")} />
+          <SearchPressable onPress={() => push({pathname:"/menu", params:{category:"Makanan"}})} />
           <View style={styles.separator} />
           <InfoCard />
           <View style={styles.separator} />
@@ -28,11 +35,8 @@ export default function TabOneScreen() {
 
       </ScrollView>
 
-      <FloatingCartButton
-        visible={cartCount > 0}
-        totalItems={cartCount}
-        onPress={() => {}}
-      />
+      <FancyFloatingCart onCartPres={() => bottomSheetRef.current?.present()} />
+      <CartBottomSheet ref={bottomSheetRef} />
         
     </SafeAreaView>
   );
@@ -41,7 +45,6 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
   },
   separator: {
     marginVertical: 6,
@@ -49,3 +52,4 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+

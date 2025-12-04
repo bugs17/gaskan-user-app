@@ -11,57 +11,62 @@ const CartStep = ({keystep, items, total, onNext, onUpdateQty}) => {
     const inset = useSafeAreaInsets()
     
   return (
-    <MotiView
-        key={keystep}
-        from={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        exit={{ opacity: 0, translateY: -10 }}
-        transition={{ type: "timing", duration: 220 }}
-    >
         <BottomSheetScrollView
-        contentContainerStyle={{ paddingBottom: inset.bottom + 80}}
-        showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: inset.bottom + 80}}
+            showsVerticalScrollIndicator={false}
         >
-        {items.map((item, index) => (
-            <View key={index} style={styles.itemCard}>
-            <Image style={styles.itemImage} source={{ uri: item.image }} />
 
-            <View style={{ flex: 1 }}>
-                <Text style={styles.itemName}>{item.name}</Text>
-                <Text style={styles.itemPrice}>Rp {item.price.toLocaleString("id-ID")}</Text>
-            </View>
+            <MotiView
+                key={keystep}
+                from={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: -20 }}
+                transition={{ type: "timing", duration: 220 }}
+            >
+                {items.map((item, index) => (
+                    <View key={index} style={styles.itemCard}>
+                    <Image style={styles.itemImage} source={{ uri: item.image }} />
 
-            <View style={styles.stepper}>
-                <StepperButton onPress={() => onUpdateQty(item.id, "dec")}>-</StepperButton>
-                <NumberAnimation value={item.qty} fontSize={16} />
-                <StepperButton onPress={() => onUpdateQty(item.id, "inc")}>+</StepperButton>
-            </View>
-            </View>
-        ))}
-        {/* FOOTER */}
-        <View style={[styles.footer, {marginHorizontal:20}]}>
-            <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>Total</Text>
-            <NumberAnimation value={total.toLocaleString("id")} fontSize={18} prefix="Rp " color="#34C759" />
-            </View>
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.itemName}>{item.name}</Text>
+                        <Text style={styles.itemPrice}>Rp {item.price.toLocaleString("id-ID")}</Text>
+                    </View>
 
-            <AppleButton 
-                title={"Lanjut"} 
-                onPress={onNext} 
-                style={{boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)"}}
-            />
+                    <View style={styles.stepper}>
+                        <StepperButton onPress={() => onUpdateQty(item.id, "dec")}>-</StepperButton>
+                        <NumberAnimation value={item.qty} fontSize={16} />
+                        <StepperButton onPress={() => onUpdateQty(item.id, "inc")}>+</StepperButton>
+                    </View>
+                    </View>
+                ))}
+                {/* FOOTER */}
+                <View style={[styles.footer, {marginHorizontal:20}]}>
+                    <View style={styles.totalRow}>
+                    <Text style={styles.totalLabel}>Total</Text>
+                    <NumberAnimation value={total.toLocaleString("id")} fontSize={18} prefix="Rp " color="#34C759" />
+                    </View>
 
-            <AppleButton
-                color="#F2F2F7"
-                textStyle={{ color: "#000", fontSize: 16 }}
-                style={{ borderWidth: 1, borderColor: "rgba(0,0,0,0.08)", boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.28)" }}
-                title={"Tambah menu lagi"}
-                onPress={() => {}}
-            />
-        </View>
+                    <AppleButton 
+                        title={"Lanjut"} 
+                        onPress={onNext} 
+                        style={{
+                            boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)",
+                            borderWidth: 1,
+                            borderColor: "rgba(255,255,255,0.18)",
+                        }}
+                    />
+
+                    <AppleButton
+                        color="#F2F2F7"
+                        textStyle={{ color: "#000", fontSize: 16 }}
+                        style={{ borderWidth: 1, borderColor: "rgba(0,0,0,0.08)", boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.28)" }}
+                        title={"Tambah menu lagi"}
+                        onPress={() => {}}
+                    />
+                </View>
+
+            </MotiView>
         </BottomSheetScrollView>
-
-    </MotiView>
   )
 }
 

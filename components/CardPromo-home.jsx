@@ -1,12 +1,21 @@
 // components/GradientCard.jsx
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, Text, TouchableOpacity, Pressable } from "react-native";
 import ramen from "../assets/images/ramen.png";
 
 import {Fonts} from '../constants/Fonts'
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { useSafePush } from "../utils/useSafePush";
 
 
-export default function GradientCard({ children, style }) {
+export default function GradientCard({ style }) {
   
+  const scale = useSharedValue(1);
+  
+    const anim = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+    }));
+
+    const push = useSafePush()
 
   return (
     <View
@@ -16,10 +25,15 @@ export default function GradientCard({ children, style }) {
         <Text style={styles.tagline}>
           Jelajahi pilihan makanan di sekitarmu.
         </Text>
-
-        <TouchableOpacity  activeOpacity={.8} style={styles.ctaButton}>
-            <Text style={styles.ctaText}>Cek sekarang</Text>
-        </TouchableOpacity>
+      <Animated.View style={[anim]}>
+          <Pressable
+          onPressIn={() => (scale.value = withTiming(0.96, { duration: 80 }))}
+          onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
+          onPress={() => push({pathname:'/menu', params:{category: "Makanan"}})}
+          style={styles.ctaButton}>
+              <Text style={styles.ctaText}>Cek sekarang</Text>
+          </Pressable>
+      </Animated.View>
 
         <View style={styles.imageContainer}>
           <Image source={ramen} style={styles.ilustrasi} />
@@ -62,7 +76,7 @@ const styles = StyleSheet.create({
         fontFamily:Fonts.bold
     },
     ctaButton: {
-        backgroundColor: "#4B6BFF",
+        backgroundColor: "#8A63F6",
         // backgroundColor: "#8E8E93",
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.20)", // Apple-style border di dark surface

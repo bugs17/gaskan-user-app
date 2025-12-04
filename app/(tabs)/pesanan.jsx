@@ -4,13 +4,20 @@ import Header from '../../components/pesanan/Header';
 import CardOrder from '../../components/pesanan/Card-order';
 import CourierCard from '../../components/pesanan/Card-kurir';
 import EmptyStateView from '../../components/pesanan/No-order';
+import FancyFloatingCart from '../../components/Floating-chart-button';
+import { useSafePush } from '../../utils/useSafePush';
 
 
 export default function Pesanan() {
   const order = false
+  const push = useSafePush()
 
   if (!order) {
-    return <EmptyStateView />;
+    return (<>
+      <EmptyStateView onPressMenu={() => push({pathname:"/menu", params:{category:"Makanan"}})} />
+      <FancyFloatingCart />
+    </>
+    )
   }
   
   return (
@@ -21,6 +28,7 @@ export default function Pesanan() {
         <CardOrder />
         <CourierCard />
       </ScrollView>
+
     </SafeAreaView>
   );
 }

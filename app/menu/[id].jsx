@@ -11,48 +11,58 @@ import { ArrowLeftIcon } from "react-native-heroicons/solid";
 import { FlashList } from "@shopify/flash-list";
 import {  useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ArrowRightIcon, ShoppingBagIcon, ShoppingCartIcon } from "react-native-heroicons/outline";
+import { ArrowRightIcon } from "react-native-heroicons/outline";
 import CartBottomSheet from "../../components/bottom-sheet/CartBottomSheet";
 import AppleButton from "../../components/Button-apple-custom";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import {Fonts} from '../../constants/Fonts'
+import { useSafePush } from "../../utils/useSafePush";
+import { Feather } from "@expo/vector-icons";
+import RelatedMenuCard from "../../components/Related-menu-card";
 // Dummy related menu items
 const relatedMenus = [
   {
     id: "m1",
     name: "Ayam Geprek Level 5",
     price: 18000,
-    imageUrl: "https://picsum.photos/300/300?random=1",
+    imageUrl: "https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp",
   },
   {
     id: "m2",
     name: "Nasi Goreng Special",
     price: 22000,
-    imageUrl: "https://picsum.photos/300/300?random=2",
+    imageUrl: "https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp",
   },
   {
     id: "m3",
     name: "Es Teh Manis",
     price: 5000,
-    imageUrl: "https://picsum.photos/300/300?random=3",
+    imageUrl: "https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp",
   },
 ];
 
 export default function DetailMenuScreen() {
   const params = useLocalSearchParams();
-  const router = useRouter();
+  const router = useRouter()
+  const push = useSafePush()
   const bottomSheetRef = useRef(null);
+
+  const isItemInChart = true
   
   // reanimated
   const scale = useSharedValue(1);
+  const scale2 = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+  }));
+  const animatedStyle2 = useAnimatedStyle(() => ({
       transform: [{ scale: scale.value }],
   }));
 
 
 
-  const item = JSON.parse(params.item);
+  const item = { id: '1', name: 'Nasi Goreng', imageUrl: "https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp", price: "25000", status: true }
 
   useEffect(() => {
     bottomSheetRef.current?.close()
@@ -61,15 +71,19 @@ export default function DetailMenuScreen() {
 
 
 
+  // const renderRelated = useCallback(({ item }) => (
+  //   <Pressable style={styles.relatedCard}>
+  //     <Image source={{ uri: item.imageUrl || "" }} style={styles.relatedImage} />
+  //     <Text style={styles.relatedName} numberOfLines={1}>
+  //       {item.name || "kosong"}
+  //     </Text>
+  //     <Text style={styles.relatedPrice}>Rp {item.price || 0}</Text>
+  //   </Pressable>
+  // ), []);
+
   const renderRelated = useCallback(({ item }) => (
-    <Pressable style={styles.relatedCard}>
-      <Image source={{ uri: item.imageUrl }} style={styles.relatedImage} />
-      <Text style={styles.relatedName} numberOfLines={1}>
-        {item.name}
-      </Text>
-      <Text style={styles.relatedPrice}>Rp {item.price}</Text>
-    </Pressable>
-  ), []);
+    <RelatedMenuCard item={item} onPress={() => push({pathname:'/menu/' + 123})} />
+), []);
 
 
 
@@ -136,7 +150,7 @@ export default function DetailMenuScreen() {
                 <Pressable
                   onPressIn={() => (scale.value = withTiming(0.7, { duration: 80 }))}
                   onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
-                  onPress={() => router.push('/warung')}
+                  onPress={() => push({pathname:'/warung/' + 123})}
                 >
                   <Animated.View style={animatedStyle}>
                     <ArrowRightIcon size={20} color="#8E8E93" />
@@ -159,9 +173,16 @@ export default function DetailMenuScreen() {
 
           <View style={{marginHorizontal: 16, marginBottom: 18,}}>
             <AppleButton 
-              leftIcon={<ShoppingBagIcon color="#fff" size={20} />} 
-              title={"Tambah"} onPress={() => bottomSheetRef.current?.present()} 
-              style={{boxShadow: "0px 6px 18px rgba(138, 99, 246, 0.28)"}}
+              leftIcon={<ShoppingBag qty={isItemInChart ? 2 : 0} />} 
+              title={isItemInChart ? "Lihat Keranjang" : "Tambah"} onPress={() => bottomSheetRef.current?.present()} 
+              color={isItemInChart ? "#34C759" : "#8A63F6"}
+              style={{
+                boxShadow: isItemInChart
+                ? "0px 6px 18px rgba(52, 199, 89, 0.28)"   // Apple green shadow
+                : "0px 6px 18px rgba(138, 99, 246, 0.28)", // Purple brand shadow
+                borderWidth: 1,
+                borderColor: "rgba(255,255,255,0.18)",
+                }}
               />
           </View>
 
@@ -169,7 +190,18 @@ export default function DetailMenuScreen() {
 
           {/* RELATED MENUS */}
           <View style={{ marginTop: 6 }}>
+          <View style={{flexDirection:'row', justifyContent:'space-between', paddingHorizontal:16, paddingRight: 16 * 2}}>
             <Text style={styles.sectionTitle}>Menu lainnya</Text>
+            <Pressable
+                  onPressIn={() => (scale2.value = withTiming(0.7, { duration: 80 }))}
+                  onPressOut={() => (scale2.value = withTiming(1, { duration: 80 }))}
+                  onPress={() => push({pathname:'/warung/' + 123})}
+            >
+              <Animated.View style={animatedStyle2}>
+                <ArrowRightIcon size={20} color="#8E8E93" />
+              </Animated.View>
+            </Pressable>
+          </View>
 
             <FlashList
               data={relatedMenus}
@@ -177,7 +209,7 @@ export default function DetailMenuScreen() {
               estimatedItemSize={120}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 16 }}
+              contentContainerStyle={{ paddingHorizontal: 16, paddingBottom:20 }}
             />
           </View>
 
@@ -191,7 +223,58 @@ export default function DetailMenuScreen() {
   );
 }
 
+
+function ShoppingBag({ size = 22, color = "white", qty = 0, style }) {
+  return (
+    <View style={[styles.wrapper, style]}>
+      
+      {/* Shopping Bag Icon */}
+      <Feather name="shopping-bag" size={size} color={color} />
+
+      {/* Badge */}
+      {qty > 0 && (
+        <View style={styles.badge}>
+          <Text style={styles.badgeText}>{qty}</Text>
+        </View>
+      )}
+    </View>
+  );
+}
+
+
+
 const styles = StyleSheet.create({
+  wrapper: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  badge: {
+    position: "absolute",
+    top: -6,
+    right: -8,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 5,
+    borderRadius: 10,
+
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "#34C759", // brand purple
+
+    justifyContent: "center",
+    alignItems: "center",
+
+    // subtle shadow for glossy feel
+    // boxShadow: "0px 2px 4px rgba(0,0,0,0.25)",
+  },
+  badgeText: {
+    fontSize: 11,
+    fontWeight: "700",
+    color: "#34C759",
+  },
+
   container: {
     flex: 1,
     backgroundColor: "#F5F6F7",
@@ -279,7 +362,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontFamily:Fonts.bold,
-    marginLeft: 16,
     marginBottom: 12,
     color: "#000",
   },
