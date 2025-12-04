@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react
 import { Fonts } from '../../constants/Fonts';
 import { ChevronRightIcon, BuildingStorefrontIcon } from 'react-native-heroicons/outline';
 import Makanan from '../../assets/images/makanan.jpeg'
+import { useSafePush } from '../../utils/useSafePush';
 
 // Contoh data makanan
 const orderItems = [
@@ -34,6 +35,8 @@ const CardOrderBig = () => {
     const totalPrice = orderItems.reduce((sum, item) => sum + item.price * item.qty, 0);
     const deliveryFee = 12000;
     const finalPayment = totalPrice + deliveryFee;
+      const push = useSafePush()
+    
 
     const renderItem = ({ item, index }) => (
         <View style={[styles.itemRow, index === orderItems.length - 1 && { borderBottomWidth: 0 }]}>
@@ -70,7 +73,7 @@ const CardOrderBig = () => {
         />
 
         {/* Footer */}
-        <TouchableOpacity style={styles.footer} onPress={() => {}}>
+        <TouchableOpacity style={styles.footer} onPress={() => push('/detail-order')}>
             <View>
                 <Text style={styles.totalText}>Total: Rp. {totalPrice.toLocaleString()}</Text>
                 <Text style={styles.subText}>Ongkir: Rp. {deliveryFee.toLocaleString()}</Text>

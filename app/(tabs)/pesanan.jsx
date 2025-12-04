@@ -9,7 +9,7 @@ import { useSafePush } from '../../utils/useSafePush';
 
 
 export default function Pesanan() {
-  const order = false
+  const order = true
   const push = useSafePush()
 
   if (!order) {

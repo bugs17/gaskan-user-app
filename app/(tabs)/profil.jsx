@@ -3,9 +3,19 @@ import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { UserIcon, MapPinIcon,ChatBubbleLeftRightIcon,ClockIcon,ShieldCheckIcon, CreditCardIcon, GiftIcon, BellIcon, QuestionMarkCircleIcon, ArrowRightIcon, ArrowLeftOnRectangleIcon, DocumentTextIcon, PhoneIcon } from "react-native-heroicons/outline";
 import ProfileImage from '../../assets/images/kurir-placeholder.png'
 import FancyFloatingCart from "../../components/Floating-chart-button";
+import { useSafePush } from "../../utils/useSafePush";
+import FeedbackBottomSheet from "../../components/Bottomsheet-feedback";
+import { useEffect, useRef } from "react";
 
 export default function ProfileScreen() {
   const inset = useSafeAreaInsets()
+  const push = useSafePush()
+  const bottomSheetFeedBackRef = useRef(null);
+
+  useEffect(() => {
+    bottomSheetFeedBackRef.current?.close()
+  }, [])
+  
   return (
     <SafeAreaView style={{flex:1}} edges={['top']}>
       <ScrollView style={styles.container} contentContainerStyle={{paddingBottom:inset.bottom + 100}} showsVerticalScrollIndicator={false}>
@@ -24,13 +34,13 @@ export default function ProfileScreen() {
 
         {/* GROUP 1 — ACCOUNT */}
         <View style={styles.groupCard}>
-          <ProfileItem icon={<UserIcon size={22} color="#3A3A3C" />} label="Edit Profil" />
-          <ProfileItem icon={<PhoneIcon size={22} color="#3A3A3C" />} label="Kelola Nomor Telepon" />
+          <ProfileItem onPress={() => push('/settings')} icon={<UserIcon size={22} color="#3A3A3C" />} label="Edit Profil" />
+          {/* <ProfileItem icon={<PhoneIcon size={22} color="#3A3A3C" />} label="Kelola Nomor Telepon" /> */}
         </View>
 
         {/* GROUP 2 — REWARDS */}
         <View style={styles.groupCard}>
-          <ProfileItem icon={<DocumentTextIcon size={22} color="#3A3A3C" />} label="Umpan Balik (Feedback)" />
+          <ProfileItem onPress={() => bottomSheetFeedBackRef.current?.present()} icon={<DocumentTextIcon size={22} color="#3A3A3C" />} label="Umpan Balik (Feedback)" />
           <ProfileItem icon={<BellIcon size={22} color="#3A3A3C" />} label="Notifikasi" />
         </View>
 
@@ -52,13 +62,13 @@ export default function ProfileScreen() {
         </View>
       </ScrollView>
       <FancyFloatingCart />
-
+    <FeedbackBottomSheet ref={bottomSheetFeedBackRef}  />
     </SafeAreaView>
   );
 }
 
-const ProfileItem = ({ icon, label, labelStyle }) => (
-  <TouchableOpacity style={styles.item}>
+const ProfileItem = ({ icon, label, labelStyle, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.item}>
     <View style={styles.itemLeft}>
       {icon}
       <Text style={[styles.itemLabel, labelStyle]}>{label}</Text>

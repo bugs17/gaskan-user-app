@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { Fonts } from "../../constants/Fonts";
 import { ChatBubbleLeftRightIcon } from "react-native-heroicons/solid";
 import KurirPhoto from "../../assets/images/kurir-placeholder.png";
@@ -12,6 +12,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useEffect } from "react";
 import { ChevronRightIcon } from "react-native-heroicons/outline";
+import { useSafePush } from "../../utils/useSafePush";
 
 
 // ==========================
@@ -83,6 +84,13 @@ const AnimatedLine = ({ active }) => {
 const CourierCard = () => {
   const statuses = ["Menuju", "Ambil", "Antar"];
   const currentStep = 2; // active
+  const push = useSafePush()
+
+  const scale = useSharedValue(1);
+
+  const anim = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   return (
     <View style={styles.card}>
@@ -95,9 +103,16 @@ const CourierCard = () => {
           <Text style={styles.vehicle}>Motor | B 1234 XYZ</Text>
         </View>
 
-        <TouchableOpacity activeOpacity={0.7} style={styles.chatButton}>
-          <ChatBubbleLeftRightIcon size={25} color="#8E8E93" />
-        </TouchableOpacity>
+        <Animated.View style={[anim]}>
+          <Pressable 
+            style={[styles.chatButton]}
+            onPressIn={() => (scale.value = withTiming(0.96, { duration: 80 }))}
+            onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
+            onPress={() => push({pathname:'/chat', params:{driverId:123}})}
+          >
+            <ChatBubbleLeftRightIcon size={25} color="#8E8E93" />
+          </Pressable>
+        </Animated.View>
       </View>
 
       <View style={styles.separator} />
@@ -172,7 +187,7 @@ const CourierCard = () => {
 
         <TouchableOpacity
         activeOpacity={0.6}
-        onPress={() => {}}
+        onPress={() => push('/live-tracking')}
         style={styles.trackButton}
         >
             <Text style={styles.trackText}>Lacak</Text>

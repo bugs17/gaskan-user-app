@@ -66,6 +66,10 @@ function RootLayoutNav() {
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="menu" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
             <Stack.Screen name="warung" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+            <Stack.Screen name="chat" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+            <Stack.Screen name="detail-order" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+            <Stack.Screen name="settings" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+            <Stack.Screen name="live-tracking" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
           </Stack>
           <PlaceOrderOverlay />
       </BottomSheetModalProvider>
