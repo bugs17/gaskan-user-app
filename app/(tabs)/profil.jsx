@@ -41,13 +41,13 @@ export default function ProfileScreen() {
         {/* GROUP 2 — REWARDS */}
         <View style={styles.groupCard}>
           <ProfileItem onPress={() => bottomSheetFeedBackRef.current?.present()} icon={<DocumentTextIcon size={22} color="#3A3A3C" />} label="Umpan Balik (Feedback)" />
-          <ProfileItem icon={<BellIcon size={22} color="#3A3A3C" />} label="Notifikasi" />
+          <ProfileItem onPress={() => push('/settings/notifikasi')} icon={<BellIcon size={22} color="#3A3A3C" />} label="Notifikasi" />
         </View>
 
         {/* GROUP 3 — HELP */}
         <View style={styles.groupCard}>
-          <ProfileItem label="Riwayat Pesanan" icon={<ClockIcon size={22} color="#3A3A3C" />} />
-          <ProfileItem label="Riwayat Chat" icon={<ChatBubbleLeftRightIcon size={22} color="#3A3A3C" />} />
+          <ProfileItem  label="Riwayat Pesanan" icon={<ClockIcon size={22} color="#3A3A3C" />} />
+          <ProfileItem onPress={() => push('/settings/riwayat-chat')} label="Riwayat Chat" icon={<ChatBubbleLeftRightIcon size={22} color="#3A3A3C" />} />
           <ProfileItem label="Kebijakan & Privasi" icon={<ShieldCheckIcon size={22} color="#3A3A3C" />} />
           <ProfileItem label="Pusat Bantuan" icon={<QuestionMarkCircleIcon size={22} color="#3A3A3C" />} />
         </View>

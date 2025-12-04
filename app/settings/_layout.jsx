@@ -12,6 +12,14 @@ const SettingsLayout = () => {
               headerShown:false,
               animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
           }} />
+          <Stack.Screen name='notifikasi' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='riwayat-chat' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
           
       </Stack>
       {/* <FancyFloatingCart /> */}
