@@ -1,0 +1,8 @@
+tambahkan ini
+devDebug {
+            initWith debug
+            matchingFallbacks = ['debug']
+        }
+
+di dalam block buildTypes
+di file /android/app/build.gradle
