@@ -20,6 +20,30 @@ const SettingsLayout = () => {
               headerShown:false,
               animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
           }} />
+          <Stack.Screen name='chatDetailScreen' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='riwayat-order' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='riwayat-order-detail-screen' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='(wallet)' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='kebijakan-privasi' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
+          <Stack.Screen name='pusat-bantuan' options={{
+              headerShown:false,
+              animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true
+          }} />
           
       </Stack>
       {/* <FancyFloatingCart /> */}

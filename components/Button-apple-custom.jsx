@@ -14,7 +14,8 @@ export default function AppleButton({
   textStyle,    // custom style utk text
   color = "#8A63F6",
   leftIcon,     // <Icon /> component
-  rightIcon,    // <Icon /> component
+  rightIcon, 
+  disabled   // <Icon /> component
 }) {
   const scale = useSharedValue(1);
 
@@ -24,6 +25,7 @@ export default function AppleButton({
 
   return (
     <Pressable
+      disabled={disabled}
       onPressIn={() => (scale.value = withTiming(0.96, { duration: 80 }))}
       onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
       onPress={onPress}

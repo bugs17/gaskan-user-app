@@ -82,6 +82,12 @@ const EditProfil = () => {
 
         </View>
 
+        <Pressable onPress={() => {}} style={{ marginTop: 16, alignItems: 'center' }}>
+          <Text style={{ color: '#FF4D4F', fontFamily: Fonts.semibold, fontSize: 14 }}>
+            Hapus Akun
+          </Text>
+        </Pressable>
+
       </ScrollView>
 
       {/* SAVE BUTTON */}
@@ -89,6 +95,7 @@ const EditProfil = () => {
         <Pressable style={styles.saveBtn} onPress={() => router.back()}>
           <Text style={styles.saveBtnText}>Simpan Perubahan</Text>
         </Pressable>
+        
       </View>
 
     </SafeAreaView>

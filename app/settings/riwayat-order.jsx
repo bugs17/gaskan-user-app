@@ -15,7 +15,26 @@ const generateOrderId = () => {
   return `#ORD-2025-${result}`
 }
 
-const RiwayatChat = () => {
+// Fungsi untuk generate random tanggal (dalam format DD/MM/YYYY)
+const generateDate = () => {
+  const start = new Date(2025, 0, 1).getTime()
+  const end = new Date().getTime()
+  const date = new Date(Math.floor(Math.random() * (end - start)) + start)
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+}
+
+// Fungsi untuk generate status
+const generateStatus = () => {
+  const statuses = [
+    { status: 'Sukses' },
+    { status: 'Dibatalkan', by: 'User' },
+    { status: 'Dibatalkan', by: 'Driver' },
+    { status: 'Dibatalkan', by: 'Pembeli' },
+  ]
+  return statuses[Math.floor(Math.random() * statuses.length)]
+}
+
+const RiwayatOrder = () => {
   const router = useRouter()
   const inset = useSafeAreaInsets()
   const push = useSafePush()
@@ -23,6 +42,8 @@ const RiwayatChat = () => {
   // Buat 8 transaksi random
   const transactions = Array.from({ length: 8 }, () => ({
     id: generateOrderId(),
+    date: generateDate(),
+    ...generateStatus(),
   }))
 
   return (
@@ -33,7 +54,7 @@ const RiwayatChat = () => {
         <Pressable onPress={() => router.back()}>
           <ArrowLeftIcon size={22} color="#000" strokeWidth={2} />
         </Pressable>
-        <Text style={styles.headerTitle}>Riwayat Chat</Text>
+        <Text style={styles.headerTitle}>Riwayat Order</Text>
         <View style={{ width: 22 }} />
       </View>
 
@@ -45,9 +66,18 @@ const RiwayatChat = () => {
           <Pressable
             key={index}
             style={styles.card}
-            onPress={() => push('/settings/chatDetailScreen')}
+            onPress={() => push('/settings/riwayat-order-detail-screen')} // nanti bisa link ke detail
           >
             <Text style={styles.orderId}>{tx.id}</Text>
+            <Text style={styles.date}>{tx.date}</Text>
+            <Text
+              style={[
+                styles.status,
+                tx.status === 'Sukses' ? styles.sukses : styles.cancelled,
+              ]}
+            >
+              {tx.status === 'Sukses' ? 'Sukses' : `Dibatalkan (${tx.by})`}
+            </Text>
           </Pressable>
         ))}
       </ScrollView>
@@ -56,7 +86,7 @@ const RiwayatChat = () => {
   )
 }
 
-export default RiwayatChat
+export default RiwayatOrder
 
 const styles = StyleSheet.create({
   header: {
@@ -86,5 +116,18 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.semibold,
     fontSize: 15,
     color: "#000",
+    marginBottom: 4,
   },
+  date: {
+    fontFamily: Fonts.regular,
+    fontSize: 13,
+    color: "#555",
+    marginBottom: 4,
+  },
+  status: {
+    fontFamily: Fonts.semibold,
+    fontSize: 13,
+  },
+  sukses: { color: '#28A745' },      // hijau
+  cancelled: { color: '#FF4D4F' },    // merah
 })
