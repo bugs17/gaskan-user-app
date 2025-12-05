@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import PlaceOrderOverlay from '../components/Place-order-loading-screen';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 
 export {
@@ -61,16 +62,17 @@ function RootLayoutNav() {
       <BottomSheetModalProvider>
 
           <StatusBar style='dark' />
-
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="menu" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-            <Stack.Screen name="warung" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-            <Stack.Screen name="chat" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-            <Stack.Screen name="detail-order" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-            <Stack.Screen name="settings" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-            <Stack.Screen name="live-tracking" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
-          </Stack>
+          <KeyboardProvider>
+                  <Stack>
+                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                    <Stack.Screen name="menu" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                    <Stack.Screen name="warung" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                    <Stack.Screen name="chat" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                    <Stack.Screen name="detail-order" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                    <Stack.Screen name="settings" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                    <Stack.Screen name="live-tracking" options={{ headerShown: false, animation: isIos ? "ios_from_right" : "slide_from_right", gestureEnabled: true }} />
+                  </Stack>
+          </KeyboardProvider>
           <PlaceOrderOverlay />
       </BottomSheetModalProvider>
 
