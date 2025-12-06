@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -9,15 +9,16 @@ import {
   Pressable,
   Platform,
   Keyboard,
+  FlatList,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { FlashList } from '@shopify/flash-list';
 import Animated, { useSharedValue, withSpring, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeftIcon } from 'react-native-heroicons/solid';
+import { ArrowLeftIcon, ChevronDownIcon } from 'react-native-heroicons/solid';
 import { useRouter } from 'expo-router';
-import { KeyboardProvider, KeyboardAwareScrollView, KeyboardToolbar, useKeyboardAnimation, useKeyboardHandler } from 'react-native-keyboard-controller';
+import {  useKeyboardHandler } from 'react-native-keyboard-controller';
+import {Fonts} from '../../constants/Fonts'
 
 // Theme
 const THEME = {
@@ -57,6 +58,78 @@ const initialMessages = [
     status: 'delivered',
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT791OED1ln4Ufl2oa6sQXnHop3auJdBC3iqKY8E_9Amh-NxYtjWzJ1uIFnAwinAkE9LeZX7a6ouxCPeVFwEXpj7457byhqcgVeqj_RJzsnmQ&s=10',
   },
+  {
+    id: 'm4',
+    type: 'text',
+    text: 'Oke, saya tunggu di depan toko ya.',
+    fromMe: true,
+    time: '10:04',
+    status: 'sent',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukZl5-j4v24rqiE6nZtDBmE_yphGNA2ME5pzji1kZwhZQ6nNJVscGWrYh-rSEaMmRmMxvoGyeVxPcitlpGUgDyy1_dqVlRBCOWxVPe9Kh&s=10',
+  },
+  {
+    id: 'm5',
+    type: 'image',
+    image: 'https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp',
+    fromMe: false,
+    time: '10:06',
+    status: 'delivered',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT791OED1ln4Ufl2oa6sQXnHop3auJdBC3iqKY8E_9Amh-NxYtjWzJ1uIFnAwinAkE9LeZX7a6ouxCPeVFwEXpj7457byhqcgVeqj_RJzsnmQ&s=10',
+  },
+  {
+    id: 'm6',
+    type: 'text',
+    text: 'Oke, saya tunggu di depan toko ya.',
+    fromMe: true,
+    time: '10:04',
+    status: 'sent',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukZl5-j4v24rqiE6nZtDBmE_yphGNA2ME5pzji1kZwhZQ6nNJVscGWrYh-rSEaMmRmMxvoGyeVxPcitlpGUgDyy1_dqVlRBCOWxVPe9Kh&s=10',
+  },
+  {
+    id: 'm7',
+    type: 'image',
+    image: 'https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp',
+    fromMe: false,
+    time: '10:06',
+    status: 'delivered',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT791OED1ln4Ufl2oa6sQXnHop3auJdBC3iqKY8E_9Amh-NxYtjWzJ1uIFnAwinAkE9LeZX7a6ouxCPeVFwEXpj7457byhqcgVeqj_RJzsnmQ&s=10',
+  },
+  {
+    id: 'm8',
+    type: 'text',
+    text: 'Oke, saya tunggu di depan toko ya.',
+    fromMe: true,
+    time: '10:04',
+    status: 'sent',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukZl5-j4v24rqiE6nZtDBmE_yphGNA2ME5pzji1kZwhZQ6nNJVscGWrYh-rSEaMmRmMxvoGyeVxPcitlpGUgDyy1_dqVlRBCOWxVPe9Kh&s=10',
+  },
+  {
+    id: 'm9',
+    type: 'image',
+    image: 'https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp',
+    fromMe: false,
+    time: '10:06',
+    status: 'delivered',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT791OED1ln4Ufl2oa6sQXnHop3auJdBC3iqKY8E_9Amh-NxYtjWzJ1uIFnAwinAkE9LeZX7a6ouxCPeVFwEXpj7457byhqcgVeqj_RJzsnmQ&s=10',
+  },
+  {
+    id: 'm10',
+    type: 'text',
+    text: 'Oke, saya tunggu di depan toko ya.',
+    fromMe: true,
+    time: '10:04',
+    status: 'sent',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukZl5-j4v24rqiE6nZtDBmE_yphGNA2ME5pzji1kZwhZQ6nNJVscGWrYh-rSEaMmRmMxvoGyeVxPcitlpGUgDyy1_dqVlRBCOWxVPe9Kh&s=10',
+  },
+  {
+    id: 'm11',
+    type: 'image',
+    image: 'https://wiratech.co.id/wp-content/uploads/2025/10/Cara-Membuat-Pizza.webp',
+    fromMe: false,
+    time: '10:06',
+    status: 'delivered',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT791OED1ln4Ufl2oa6sQXnHop3auJdBC3iqKY8E_9Amh-NxYtjWzJ1uIFnAwinAkE9LeZX7a6ouxCPeVFwEXpj7457byhqcgVeqj_RJzsnmQ&s=10',
+  },
 ];
 
 
@@ -78,28 +151,50 @@ const useGradualAnimation = () => {
 // Chat Screen
 export default function Index() {
   const [messages, setMessages] = useState(initialMessages);
+  const [showToolbar, setShowToolbar] = useState(false);
   const [text, setText] = useState('');
   const listRef = useRef(null);
   const inputRef = useRef(null);
   const router = useRouter();
   const inset = useSafeAreaInsets();
   const scale = useSharedValue(1);
-  const [paddingBotomInput, setPaddingBotomInput] = useState(inset.bottom + 20);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
 
   const scrollToBottom = useCallback(({ animated = true } = {}) => {
-    if (!listRef.current) return;
+    if (messages.length === 0) return;
+
     try {
-      listRef.current.scrollToIndex({ index: Math.max(messages.length - 1, 0), animated });
+        listRef.current.scrollToIndex({
+          index: messages.length + 4,
+          animated,
+          // viewPosition: 1, // pastikan item muncul di bawah
+        });
     } catch (e) {
       if (typeof listRef.current.scrollToEnd === 'function') {
         listRef.current.scrollToEnd({ animated });
       }
     }
   }, [messages.length]);
+
+  useEffect(() => {
+    const showSub = Keyboard.addListener('keyboardDidShow', () => {
+      scrollToBottom(true);
+      setShowToolbar(true)
+    });
+
+    const hideSub = Keyboard.addListener('keyboardDidHide', () => {
+      scrollToBottom(true);
+    });
+
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, [scrollToBottom]);
+
 
   const handleSend = useCallback(() => {
     if (!text.trim()) return;
@@ -114,7 +209,8 @@ export default function Index() {
       fromMe: true,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       status: 'sent',
-      avatar: 'https://via.placeholder.com/64/34C759/FFFFFF?text=U',
+      avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukZl5-j4v24rqiE6nZtDBmE_yphGNA2ME5pzji1kZwhZQ6nNJVscGWrYh-rSEaMmRmMxvoGyeVxPcitlpGUgDyy1_dqVlRBCOWxVPe9Kh&s=10',
+
     };
 
     setMessages((p) => [...p, newMessage]);
@@ -124,11 +220,10 @@ export default function Index() {
       setMessages((prev) =>
         prev.map((m) => (m.id === newMessage.id ? { ...m, status: 'delivered' } : m))
       );
-    }, 900);
+      scrollToBottom(true);
+    }, 100);
 
-    // Scroll to bottom after sending
-    setTimeout(() => scrollToBottom(), 100);
-  }, [text]);
+  }, [text, scrollToBottom]);
 
   const renderItem = useCallback(({ item }) => <MessageBubble item={item} />, []);
 
@@ -153,17 +248,21 @@ export default function Index() {
         bottomPadding.value = inset.bottom + 20;
       } else {
         bottomPadding.value = 20;
+        runOnJS(() => scrollToBottom())
       }
     }
-}, []);
+  }, []);
 
-const [bottomPaddingState, setBottomPaddingState] = useState(inset.bottom);
+  const handleKeyboardDismisByToolbar = () => {
+    Keyboard.dismiss()
+    setShowToolbar(false)
+  }
+
 
 
 
 
   return (
-    <KeyboardProvider>
       <SafeAreaView style={styles.safe} edges={['top']}>
         <StatusBar style="dark" backgroundColor={THEME.primary + '30'} translucent />
 
@@ -186,51 +285,53 @@ const [bottomPaddingState, setBottomPaddingState] = useState(inset.bottom);
         </View>
 
         {/* Chat List */}
-        <KeyboardAwareScrollView
-          bottomOffset={62}
-          contentContainerStyle={{  paddingHorizontal: 16, paddingTop: 16,paddingBottom: bottomPaddingState, }}
-          onKeyboardDidShow={scrollToBottom}
-          
-        >
-          <FlashList
+          <FlatList
             ref={listRef}
             data={messages}
             renderItem={renderItem}
-            estimatedItemSize={80}
             keyExtractor={(i) => i.id}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 20, }}
           />
-        </KeyboardAwareScrollView>
 
         {/* Input & Send Button */}
-        <Animated.View style={[{ flexDirection: 'row', alignItems: 'flex-end', padding: 10, backgroundColor: THEME.card }, animatedBottomPadding]}>
-          <TouchableOpacity style={styles.attachBtn}>
-            <Ionicons name="camera-outline" size={22} color={THEME.primary} />
-          </TouchableOpacity>
-
-          <TextInput
-            ref={inputRef}
-            value={text}
-            onChangeText={setText}
-            placeholder="Tulis pesan..."
-            placeholderTextColor="#9CA3AF"
-            style={styles.input}
-            multiline
-          />
-
-          <Animated.View style={[styles.sendWrap, animatedStyle]}>
-            <Pressable onPress={handleSend} hitSlop={8} style={styles.sendBtnPressable}>
-              <View style={styles.sendBtn}>
-                <Ionicons name="send" size={18} color="#fff" />
-              </View>
+        <Animated.View style={[{gap:10,  padding: 10, backgroundColor: THEME.card,boxShadow: "0px -12px 8px rgba(0,0,0,0.12)",  }, animatedBottomPadding]}>
+          {showToolbar && (
+            <Pressable onPress={handleKeyboardDismisByToolbar} style={{alignItems:'center', width:'100%', flexDirection:'row', justifyContent:'flex-end', gap:4 }}>
+              <Text style={{color:THEME.primary, fontFamily:Fonts.semibold}}>Tutup</Text>
+              <ChevronDownIcon size={24} strokeWidth={2} color={THEME.primary} />
             </Pressable>
-          </Animated.View>
+          )}
+
+          <View style={{flexDirection: 'row', alignItems: 'flex-end',}}>
+            <TouchableOpacity style={styles.attachBtn}>
+              <Ionicons name="camera-outline" size={22} color={THEME.primary} />
+            </TouchableOpacity>
+
+            <TextInput
+              ref={inputRef}
+              value={text}
+              onChangeText={setText}
+              placeholder="Tulis pesan..."
+              placeholderTextColor="#9CA3AF"
+              style={styles.input}
+              multiline
+            />
+
+            <Animated.View style={[styles.sendWrap, animatedStyle]}>
+              <Pressable onPress={handleSend} hitSlop={8} style={styles.sendBtnPressable}>
+                <View style={styles.sendBtn}>
+                  <Ionicons name="send" size={18} color="#fff" />
+                </View>
+              </Pressable>
+            </Animated.View>
+          </View>
+
         </Animated.View>
 
         <Animated.View style={fakeView} />
       
       </SafeAreaView>
-    </KeyboardProvider>
   );
 }
 
@@ -267,10 +368,7 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.primary + '30',
     borderBottomWidth: 0.4,
     borderBottomColor: THEME.primary + '40',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
+    boxShadow: "0px 12px 8px rgba(0,0,0,0.12)",
   },
   headerCenter: { flexDirection: 'column', alignItems: 'center' },
   headerAvatar: { width: 44, height: 44, borderRadius: 22, backgroundColor: THEME.card },
@@ -286,11 +384,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 12,
     backgroundColor: THEME.card,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 3,
+    boxShadow: "0px 4px 8px rgba(0,0,0,0.12)",
   },
   bubbleMe: { backgroundColor: THEME.primary, borderBottomRightRadius: 4 },
   bubbleThem: { backgroundColor: THEME.card, borderBottomLeftRadius: 4 },
@@ -324,10 +418,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: THEME.primary,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    elevation: 4,
+    boxShadow: "0px 4px 8px rgba(0,0,0,0.12)",
   },
 });
