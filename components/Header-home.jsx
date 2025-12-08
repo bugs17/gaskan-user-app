@@ -2,15 +2,17 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { BellAlertIcon } from 'react-native-heroicons/solid'
 
 import {Fonts} from '../constants/Fonts'
+import { useSafePush } from '../utils/useSafePush'
 
 const HeaderHome = () => {
+    const push = useSafePush()
   return (
     <View style={styles.header}>
         <View style={styles.greting}>
             <Text style={styles.text}>Selamat datang!</Text>
             <Text style={styles.text}>Siap pesan makanan?</Text>
         </View>
-        <TouchableOpacity onPress={() => {}} activeOpacity={.8} style={styles.notif}>
+        <TouchableOpacity onPress={() => push('/notifikasi')} activeOpacity={.8} style={styles.notif}>
             <BellAlertIcon size={24} color="#8E8E93" />
         </TouchableOpacity>
     </View>

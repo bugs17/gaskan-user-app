@@ -33,7 +33,18 @@
     },
     "plugins": [
       "expo-router",
-      "expo-dev-client"
+      "expo-dev-client",
+      ["@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken":"sk.eyJ1IjoiYnVnczE3MDg5NCIsImEiOiJjbWl1ZGo3ZXYwZTFiM2VwaXFwbGY0M3lwIn0.d9_02y0D-QxKVNMEAjyiBg"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Show current location on map."
+        }
+      ]
     ]
   }
 }

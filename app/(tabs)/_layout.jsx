@@ -19,7 +19,7 @@ export default function TabLayout() {
       screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: {
-            // height: 100, // default sekitar 50, naikkan sesuai kebutuhan
+            height: 110, // default sekitar 50, naikkan sesuai kebutuhan
             // paddingTop: 10, // tambahkan padding atas
             // paddingBottom: 10, // optional
           },

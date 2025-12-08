@@ -1,0 +1,439 @@
+{
+  "routes": [
+    {
+      "weight_name": "auto",
+      "weight": 300.735,
+      "duration": 285.291,
+      "distance": 2379.836,
+      "legs": [
+        {
+          "via_waypoints": [],
+          "admins": [{"iso_3166_1_alpha3": "IDN", "iso_3166_1": "ID"}],
+          "weight": 300.735,
+          "duration": 285.291,
+          "steps": [
+            {
+              "intersections": [
+                {
+                  "mapbox_streets_v8": {"class": "street"},
+                  "bearings": [140],
+                  "entry": [true],
+                  "admin_index": 0,
+                  "out": 0,
+                  "geometry_index": 0,
+                  "location": [140.313808, -6.105313]
+                }
+              ],
+              "maneuver": {
+                "type": "depart",
+                "instruction": "Drive southeast.",
+                "bearing_after": 140,
+                "bearing_before": 0,
+                "location": [140.313808, -6.105313]
+              },
+              "name": "",
+              "duration": 5.874,
+              "distance": 57.235,
+              "driving_side": "left",
+              "weight": 5.874,
+              "mode": "driving",
+              "geometry": {
+                "coordinates": [
+                  [140.313808, -6.105313],
+                  [140.314143, -6.105704]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "intersections": [
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, false, false],
+                  "in": 2,
+                  "bearings": [47, 227, 320],
+                  "duration": 34.457,
+                  "turn_weight": 6,
+                  "turn_duration": 8.872,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 31.584,
+                  "geometry_index": 1,
+                  "location": [140.314143, -6.105704]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false, true],
+                  "in": 2,
+                  "bearings": [47, 145, 225, 322],
+                  "duration": 30.234,
+                  "turn_weight": 0.5,
+                  "turn_duration": 0.067,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 30.667,
+                  "geometry_index": 3,
+                  "location": [140.315582, -6.104337]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, false, true],
+                  "in": 1,
+                  "bearings": [46, 227, 324],
+                  "duration": 34.721,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.026,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 34.746,
+                  "geometry_index": 4,
+                  "location": [140.31731, -6.102758]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false, true],
+                  "in": 2,
+                  "bearings": [40, 99, 226, 294],
+                  "duration": 22.347,
+                  "turn_weight": 0.5,
+                  "turn_duration": 0.041,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 22.806,
+                  "geometry_index": 10,
+                  "location": [140.319242, -6.100884]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false],
+                  "in": 2,
+                  "bearings": [37, 127, 216],
+                  "duration": 12.896,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.072,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 12.874,
+                  "geometry_index": 12,
+                  "location": [140.320296, -6.099515]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false],
+                  "in": 2,
+                  "bearings": [37, 127, 217],
+                  "duration": 18.312,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.062,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 18.3,
+                  "geometry_index": 13,
+                  "location": [140.320902, -6.098727]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false, true],
+                  "in": 2,
+                  "bearings": [61, 145, 231, 289],
+                  "duration": 31.037,
+                  "turn_weight": 0.5,
+                  "turn_duration": 0.134,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 31.402,
+                  "geometry_index": 18,
+                  "location": [140.321831, -6.097669]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, false, true],
+                  "in": 1,
+                  "bearings": [61, 241, 341],
+                  "duration": 2.326,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.062,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 2.314,
+                  "geometry_index": 19,
+                  "location": [140.323933, -6.096509]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false],
+                  "in": 2,
+                  "bearings": [60, 151, 241],
+                  "duration": 26.018,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.062,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 26.006,
+                  "geometry_index": 20,
+                  "location": [140.324087, -6.096424]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, true, false],
+                  "in": 2,
+                  "bearings": [63, 149, 243],
+                  "duration": 26.915,
+                  "turn_weight": 0.05,
+                  "turn_duration": 0.026,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 26.939,
+                  "geometry_index": 22,
+                  "location": [140.325869, -6.095481]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "entry": [true, false, false, true],
+                  "in": 2,
+                  "bearings": [66, 153, 243, 334],
+                  "duration": 0.861,
+                  "turn_weight": 0.5,
+                  "turn_duration": 0.072,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 1.289,
+                  "geometry_index": 24,
+                  "location": [140.327736, -6.094543]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "trunk"},
+                  "bearings": [62, 151, 246, 334],
+                  "entry": [true, true, false, false],
+                  "in": 2,
+                  "turn_weight": 0.5,
+                  "turn_duration": 0.032,
+                  "admin_index": 0,
+                  "out": 0,
+                  "geometry_index": 25,
+                  "location": [140.327792, -6.094518]
+                }
+              ],
+              "maneuver": {
+                "type": "turn",
+                "instruction": "Turn left onto Trans Papua Tanah Merah - Merauke.",
+                "modifier": "left",
+                "bearing_after": 47,
+                "bearing_before": 140,
+                "location": [140.314143, -6.105704]
+              },
+              "name": "Trans Papua Tanah Merah - Merauke",
+              "duration": 264.469,
+              "distance": 2195.317,
+              "driving_side": "left",
+              "weight": 263.74,
+              "mode": "driving",
+              "geometry": {
+                "coordinates": [
+                  [140.314143, -6.105704],
+                  [140.315063, -6.104848],
+                  [140.315582, -6.104337],
+                  [140.31731, -6.102758],
+                  [140.317904, -6.102188],
+                  [140.318143, -6.101951],
+                  [140.318465, -6.101646],
+                  [140.318839, -6.101271],
+                  [140.319023, -6.101094],
+                  [140.319242, -6.100884],
+                  [140.319695, -6.100351],
+                  [140.320296, -6.099515],
+                  [140.320902, -6.098727],
+                  [140.321373, -6.098104],
+                  [140.321539, -6.097916],
+                  [140.321651, -6.097813],
+                  [140.321741, -6.097729],
+                  [140.321831, -6.097669],
+                  [140.323933, -6.096509],
+                  [140.324087, -6.096424],
+                  [140.324677, -6.096086],
+                  [140.325869, -6.095481],
+                  [140.326111, -6.095358],
+                  [140.327736, -6.094543],
+                  [140.327792, -6.094518],
+                  [140.329462, -6.093635]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "intersections": [
+                {
+                  "mapbox_streets_v8": {"class": "street"},
+                  "bearings": [63, 153, 242, 333],
+                  "entry": [true, false, false, true],
+                  "in": 2,
+                  "turn_weight": 6,
+                  "turn_duration": 0.477,
+                  "admin_index": 0,
+                  "out": 3,
+                  "geometry_index": 26,
+                  "location": [140.329462, -6.093635]
+                }
+              ],
+              "maneuver": {
+                "type": "turn",
+                "instruction": "Turn left.",
+                "modifier": "left",
+                "bearing_after": 333,
+                "bearing_before": 62,
+                "location": [140.329462, -6.093635]
+              },
+              "name": "",
+              "duration": 4.226,
+              "distance": 36.45,
+              "driving_side": "left",
+              "weight": 9.749,
+              "mode": "driving",
+              "geometry": {
+                "coordinates": [
+                  [140.329462, -6.093635],
+                  [140.329315, -6.093342]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "intersections": [
+                {
+                  "mapbox_streets_v8": {"class": "street"},
+                  "entry": [true, false, true, true],
+                  "in": 1,
+                  "bearings": [64, 153, 244, 334],
+                  "duration": 2.006,
+                  "turn_weight": 10,
+                  "turn_duration": 1.349,
+                  "admin_index": 0,
+                  "out": 0,
+                  "weight": 10.658,
+                  "geometry_index": 27,
+                  "location": [140.329315, -6.093342]
+                },
+                {
+                  "mapbox_streets_v8": {"class": "street"},
+                  "bearings": [62, 153, 244, 335],
+                  "entry": [true, true, false, false],
+                  "in": 2,
+                  "turn_weight": 2,
+                  "turn_duration": 0.002,
+                  "admin_index": 0,
+                  "out": 0,
+                  "geometry_index": 28,
+                  "location": [140.329367, -6.093317]
+                }
+              ],
+              "maneuver": {
+                "type": "turn",
+                "instruction": "Turn right.",
+                "modifier": "right",
+                "bearing_after": 62,
+                "bearing_before": 333,
+                "location": [140.329315, -6.093342]
+              },
+              "name": "",
+              "duration": 10.723,
+              "distance": 90.833,
+              "driving_side": "left",
+              "weight": 21.372,
+              "mode": "driving",
+              "geometry": {
+                "coordinates": [
+                  [140.329315, -6.093342],
+                  [140.329367, -6.093317],
+                  [140.329874, -6.093048],
+                  [140.329955, -6.093009],
+                  [140.330005, -6.092974],
+                  [140.330025, -6.092943]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "intersections": [
+                {
+                  "bearings": [231],
+                  "entry": [true],
+                  "in": 0,
+                  "admin_index": 0,
+                  "geometry_index": 32,
+                  "location": [140.330025, -6.092943]
+                }
+              ],
+              "maneuver": {
+                "type": "arrive",
+                "instruction": "Your destination is on the right.",
+                "modifier": "right",
+                "bearing_after": 0,
+                "bearing_before": 51,
+                "location": [140.330025, -6.092943]
+              },
+              "name": "",
+              "duration": 0,
+              "distance": 0,
+              "driving_side": "left",
+              "weight": 0,
+              "mode": "driving",
+              "geometry": {
+                "coordinates": [
+                  [140.330025, -6.092943],
+                  [140.330025, -6.092943]
+                ],
+                "type": "LineString"
+              }
+            }
+          ],
+          "distance": 2379.836,
+          "summary": "Trans Papua Tanah Merah - Merauke, Trans Papua"
+        }
+      ],
+      "geometry": {
+        "coordinates": [
+          [140.313808, -6.105313],
+          [140.314143, -6.105704],
+          [140.315063, -6.104848],
+          [140.315582, -6.104337],
+          [140.31731, -6.102758],
+          [140.317904, -6.102188],
+          [140.318143, -6.101951],
+          [140.318465, -6.101646],
+          [140.318839, -6.101271],
+          [140.319023, -6.101094],
+          [140.319242, -6.100884],
+          [140.319695, -6.100351],
+          [140.320296, -6.099515],
+          [140.320902, -6.098727],
+          [140.321373, -6.098104],
+          [140.321539, -6.097916],
+          [140.321651, -6.097813],
+          [140.321741, -6.097729],
+          [140.321831, -6.097669],
+          [140.323933, -6.096509],
+          [140.324087, -6.096424],
+          [140.324677, -6.096086],
+          [140.325869, -6.095481],
+          [140.326111, -6.095358],
+          [140.327736, -6.094543],
+          [140.327792, -6.094518],
+          [140.329462, -6.093635],
+          [140.329315, -6.093342],
+          [140.329367, -6.093317],
+          [140.329874, -6.093048],
+          [140.329955, -6.093009],
+          [140.330005, -6.092974],
+          [140.330025, -6.092943]
+        ],
+        "type": "LineString"
+      }
+    }
+  ],
+  "waypoints": [
+    {"distance": 39.216, "name": "", "location": [140.313808, -6.105313]},
+    {"distance": 16.868, "name": "", "location": [140.330025, -6.092943]}
+  ],
+  "code": "Ok",
+  "uuid": "XMBxq4lJ8hMmJFsA89W7OPm1yQxUqa4AICnLfNy2pG_ifkxBKOu__A=="
+}

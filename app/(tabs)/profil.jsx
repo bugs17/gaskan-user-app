@@ -35,7 +35,7 @@ export default function ProfileScreen() {
   
   return (
     <SafeAreaView style={{flex:1}} edges={['top']}>
-      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom:inset.bottom + 100}} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom:inset.bottom }} showsVerticalScrollIndicator={false}>
 
         {/* HEADER USER + WALLET */}
         <View style={styles.headerCard}>

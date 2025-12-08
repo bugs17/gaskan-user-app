@@ -24,7 +24,7 @@ export default function TabOneScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <HeaderHome />
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}} contentContainerStyle={{paddingTop:10}}>
           <SearchPressable onPress={() => push({pathname:"/menu", params:{category:"Makanan"}})} />
           <View style={styles.separator} />
           <InfoCard />
@@ -32,7 +32,6 @@ export default function TabOneScreen() {
           <QuickMenu />
           
           <PrommoSection />
-
       </ScrollView>
 
       <FancyFloatingCart onCartPres={() => bottomSheetRef.current?.present()} />
