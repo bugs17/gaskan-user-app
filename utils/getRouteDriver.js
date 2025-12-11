@@ -9,6 +9,7 @@ import * as turf from '@turf/turf';
  */
 export function cropRoute(fullRoute, driverPosition, destination) {
   try {
+    // console.log("haloo",fullRoute)
     const line = turf.lineString(fullRoute);
     const driverPoint = turf.point(driverPosition);
     const destPoint = turf.point(destination);

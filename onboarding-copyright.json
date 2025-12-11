@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Pesan Makanan Dari Warung Terdekat",
+    "description": "Temukan beragam pilihan makanan dari warung di sekitar kamu dengan cepat dan mudah.",
+    "illustration": "onboarding1_nearby_food.png"
+  },
+  {
+    "title": "Pilih & Atur Lokasi Pengantaran",
+    "description": "Pasang pin pada lokasi yang tepat agar driver dapat menemukanmu tanpa ribet.",
+    "illustration": "onboarding2_pin_location.png"
+  },
+  {
+    "title": "Pantau Driver Secara Real-Time",
+    "description": "Lihat posisi driver dan status pesananmu langsung di peta hingga sampai tujuan.",
+    "illustration": "onboarding3_tracking_driver.png"
+  },
+  {
+    "title": "Pembayaran Aman & Praktis",
+    "description": "Pilihan pembayaran fleksibel dan aman saat pesananmu tiba.",
+    "illustration": "onboarding4_secure_payment.png"
+  },
+  {
+    "title": "Nikmati Hidangan Favoritmu",
+    "description": "Pesan hidangan favorit kamu kapan saja dengan beberapa ketukan saja.",
+    "illustration": "onboardingA_food_favorite.png"
+  },
+  {
+    "title": "Waktu Pengantaran Yang Jelas",
+    "description": "Estimasi waktu kedatangan yang akurat langsung di layar kamu.",
+    "illustration": "onboardingB_delivery_time.png"
+  },
+  {
+    "title": "Promo & Diskon Menarik",
+    "description": "Dapatkan promo khusus pengguna baru dan penawaran menarik setiap hari.",
+    "illustration": "onboardingC_promo_discount.png"
+  },
+  {
+    "title": "Chat Dengan Driver",
+    "description": "Kamu bisa berkomunikasi langsung dengan driver agar pesanan tiba lebih cepat.",
+    "illustration": "onboardingD_chat_driver.png"
+  },
+  {
+    "title": "Dukung Warung Lokal",
+    "description": "Setiap pesananmu membantu UMKM sekitar berkembang.",
+    "illustration": "onboardingE_support_local.png"
+  },
+  {
+    "title": "Pilihan Menu Variatif",
+    "description": "Dari makanan rumahan hingga camilan favorit, semua tersedia.",
+    "illustration": "onboardingF_food_variety.png"
+  },
+  {
+    "title": "Pengantaran Cepat & Aman",
+    "description": "Driver siap mengantar pesananmu dengan cepat dan aman.",
+    "illustration": "onboardingG_fast_secure.png"
+  },
+  {
+    "title": "Pesanan Sesuai Keinginan",
+    "description": "Tambahkan catatan khusus agar makanan datang sesuai selera.",
+    "illustration": "onboardingH_special_notes.png"
+  }
+]
