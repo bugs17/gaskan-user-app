@@ -1,4 +1,4 @@
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -15,7 +15,7 @@ export default function AppleButton({
   color = "#8A63F6",
   leftIcon,     // <Icon /> component
   rightIcon, 
-  disabled   // <Icon /> component
+  disabled = false   // <Icon /> component
 }) {
   const scale = useSharedValue(1);
 
@@ -29,7 +29,7 @@ export default function AppleButton({
       onPressIn={() => (scale.value = withTiming(0.96, { duration: 80 }))}
       onPressOut={() => (scale.value = withTiming(1, { duration: 80 }))}
       onPress={onPress}
-      style={[{ width: "100%" }]}
+      style={[{ width: "100%", opacity: disabled ? 0.5 : 1 }]}
     >
       <Animated.View
         style={[
@@ -43,9 +43,11 @@ export default function AppleButton({
         <View style={styles.contentWrapper}>
           {leftIcon ? <View style={styles.iconLeft}>{leftIcon}</View> : null}
 
+          
           <Text style={[styles.label, textStyle]}>
             {title}
           </Text>
+
 
           {rightIcon ? <View style={styles.iconRight}>{rightIcon}</View> : null}
         </View>

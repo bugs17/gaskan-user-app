@@ -1,0 +1,4 @@
+project_ref="kfuiirflxgxrhkamhzas"
+
+command to deploy function into server:
+supabase functions deploy nama-funtion --project-ref kfuiirflxgxrhkamhzas

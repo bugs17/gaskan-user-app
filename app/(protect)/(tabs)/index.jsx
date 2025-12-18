@@ -1,24 +1,53 @@
+import { Redirect } from 'expo-router';
+import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import HeaderHome from '../../../components/Header-home';
-import SearchPressable from '../../../components/Search-home';
-import InfoCard from '../../../components/CardPromo-home';
-import QuickMenu from '../../../components/Quick-menu';
-import PrommoSection from '../../../components/Promo-section';
-import FancyFloatingCart from '../../../components/Floating-chart-button';
-import {useSafePush} from '../../../utils/useSafePush'
 import CartBottomSheet from '../../../components/bottom-sheet/CartBottomSheet';
-import { useEffect, useRef } from 'react';
+import InfoCard from '../../../components/CardPromo-home';
+import FancyFloatingCart from '../../../components/Floating-chart-button';
+import HeaderHome from '../../../components/Header-home';
+import PrommoSection from '../../../components/Promo-section';
+import QuickMenu from '../../../components/Quick-menu';
+import SearchPressable from '../../../components/Search-home';
+import { cekProfileCompletion } from '../../../utils/cek-user-profile-completion';
+import { useSafePush } from '../../../utils/useSafePush';
 
 
 
 export default function TabOneScreen() {
+  const [isNewUser, setIsNewUser] = useState(true)
+  const [isCheking, setIsCheking] = useState(true)
   const push = useSafePush()
+
   const bottomSheetRef = useRef(null);
+
 
   useEffect(() => {
       bottomSheetRef.current?.close()
-    }, [])
+  }, [])
+
+  
+  useEffect(() => {
+    setIsCheking(true)
+    const check = async () => {
+      const res = await cekProfileCompletion()
+      setIsNewUser(res)
+      setIsCheking(false)
+    }
+    check()
+  }, [])
+  
+  
+  
+  if (isCheking) return null
+  
+  if (isNewUser) {
+    return <Redirect href={'/lengkapi-profil'} />
+    
+  }
+  
+  
+  
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>

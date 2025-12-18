@@ -1,10 +1,6 @@
 import { Tabs } from 'expo-router';
-import { HomeIcon as HomeSolid } from "react-native-heroicons/solid";
-import { HomeIcon as HomeOutline } from "react-native-heroicons/outline";
-import { ReceiptPercentIcon as ReceiptPercentIconSolid } from "react-native-heroicons/solid";
-import { ReceiptPercentIcon as ReceiptPercentIconOutline } from "react-native-heroicons/outline";
-import { UserIcon as UserSolid } from "react-native-heroicons/solid";
-import { UserIcon as UserOutline } from "react-native-heroicons/outline";
+import { HomeIcon as HomeOutline, ReceiptPercentIcon as ReceiptPercentIconOutline, UserIcon as UserOutline } from "react-native-heroicons/outline";
+import { HomeIcon as HomeSolid, ReceiptPercentIcon as ReceiptPercentIconSolid, UserIcon as UserSolid } from "react-native-heroicons/solid";
 import TabbarButton from '../../../components/TabbarButton';
 
 

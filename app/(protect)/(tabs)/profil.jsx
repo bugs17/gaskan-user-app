@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Switch } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Switch, ActivityIndicator } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { UserIcon, MapPinIcon,ChatBubbleLeftRightIcon,ClockIcon,ShieldCheckIcon, BellIcon, QuestionMarkCircleIcon, ArrowRightIcon, ArrowLeftOnRectangleIcon, DocumentTextIcon } from "react-native-heroicons/outline";
 import ProfileImage from '../../../assets/images/kurir-placeholder.png'
@@ -8,14 +8,19 @@ import FeedbackBottomSheet from "../../../components/Bottomsheet-feedback";
 import { useEffect, useRef, useState } from "react";
 import { Fonts } from "../../../constants/Fonts";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { supabase } from "../../../utils/supa";
+import { useRouter } from "expo-router";
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity)
 
 export default function ProfileScreen() {
+  const [signingOut, setSigningOut] = useState(false)
+  const [error, setError] = useState('')
+  const router = useRouter()
+
   const inset = useSafeAreaInsets()
   const push = useSafePush()
   const bottomSheetFeedBackRef = useRef(null);
-
 
   const scale = useSharedValue(1);
   const scale2 = useSharedValue(1);
@@ -27,11 +32,33 @@ export default function ProfileScreen() {
     transform: [{ scale: scale2.value }],
   }));
 
-  
-
   useEffect(() => {
     bottomSheetFeedBackRef.current?.close()
   }, [])
+
+  const handleSignOut = async () => {
+    if (signingOut) return
+
+    setSigningOut(true)
+    setError('')
+
+    try {
+      const { error } = await supabase.auth.signOut()
+
+      if (error) {
+        setError(error.message)
+        setSigningOut(false)
+        return
+      }
+
+      router.replace('/(public)')
+
+    } catch (err) {
+      console.error(err)
+      setError('Gagal logout, coba lagi.')
+      setSigningOut(false)
+    }
+  }
   
   return (
     <SafeAreaView style={{flex:1}} edges={['top']}>
@@ -105,14 +132,23 @@ export default function ProfileScreen() {
         </View>
 
         {/* LOGOUT */}
-        <View style={styles.groupCard}>
-          <ProfileItem
-            icon={<ArrowLeftOnRectangleIcon size={22} color="#FF3B30" />}
-            label="Keluar"
-            labelStyle={{ color: "#FF3B30" }}
-          />
-        </View>
+        {signingOut ? (
+          <View style={{width:'100%', flexDirection:'row', justifyContent:'center',alignItems:'center'}}>
+            <ActivityIndicator color="#8A63F6" />
+          </View>
+        ) : (
+          <View style={styles.groupCard}>
+            <ProfileItem
+              icon={<ArrowLeftOnRectangleIcon size={22} color="#FF3B30" />}
+              label="Keluar"
+              labelStyle={{ color: "#FF3B30" }}
+              onPress={handleSignOut}
+            />
+          </View>
+        )}
+
       </ScrollView>
+
       <FancyFloatingCart />
     <FeedbackBottomSheet ref={bottomSheetFeedBackRef}  />
     </SafeAreaView>

@@ -17,7 +17,7 @@ const OnBoardingLayout = () => {
     if (loading) return null;
 
     if (isDone) {
-        return <Redirect href={'/(public)/login'} />
+        return <Redirect href={'/(public)'} />
     }
 
 

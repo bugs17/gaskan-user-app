@@ -1,14 +1,15 @@
-import 'react-native-reanimated'
-import 'react-native-gesture-handler'
 import { useFonts } from 'expo-font';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-;
+import 'react-native-gesture-handler';
+import 'react-native-reanimated';
+
 
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
+  
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     SfThin: require('../assets/fonts/SF-Pro-Rounded-Thin.otf'),
@@ -26,8 +27,16 @@ export default function RootLayout() {
     }
   }, [loaded])
 
+
+
   // Masih cek semua data => jangan render apa-apa dulu
   if (!loaded) return null
 
-  return <Slot /> // protected screens
+  return (
+    <Stack>
+    <Stack.Screen name='(protect)' options={{headerShown:false}} />
+    <Stack.Screen name='(on-boarding)' options={{headerShown:false}} />
+    <Stack.Screen name='(public)' options={{headerShown:false}} />
+    </Stack>
+  ) // protected screens
 }

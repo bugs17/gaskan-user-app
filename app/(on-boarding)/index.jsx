@@ -48,7 +48,7 @@ const OnBoardingScreen = () => {
         } else {
             console.log('Onboarding selesai')
             await AsyncStorage.setItem("onboarding_done", "true")
-            push('/(public)/login')
+            push('/(public)/index')
              // reset ke 1
         }
     }

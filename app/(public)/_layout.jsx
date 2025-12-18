@@ -1,6 +1,5 @@
 import { Slot, Redirect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "../../utils/useAuth";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supa";
 
@@ -13,6 +12,7 @@ export default function PublicLayout() {
     useEffect(() => {
         setLoading(true)
         supabase.auth.getSession().then(({ data: { session } }) => {
+
             setSession(session)
             setLoading(false)
         })
@@ -42,8 +42,8 @@ export default function PublicLayout() {
     }
 
     if (!session) {
-    return <Slot />
+        return <Slot />
     }
 
-    return <Redirect href="/(protected)" />
+    return <Redirect href="/(protect)" />
 }
